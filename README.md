@@ -62,22 +62,38 @@ sap.ui.define(
 
     return Controller.extend("your.project.controller.YourController", {
       onInit: function () {
-        // Initialize the validator
+        // Initialize the validator with or without the i18n resource bundle
         this.oValidator = new Validator(this);
 
         // You can pass the i18n resource bunddle and use the appropriate i18n files
-        // otherwise it autmoatically defaults to builtin English
-        this.oValidator = new Validator(this, oResourceBundle);
+        // otherwise it autmoatically defaults to builtin English for the constraint validation
+        // this.oValidator = new Validator(this, oResourceBundle);
 
         // Set the message model for displaying validation messages
         this.setModel(
           this.oValidator.oMessageManager.getMessageModel(),
           "message"
         );
+      },
+
+      // To open the messages popover
+      onMessagesButtonPress: function (oEvent) {
+        this.oValidator.showMessagePopover(oEvent.getSource());
       }
     });
   }
 );
+```
+
+```xml
+<!-- In your XML view add a button to view the messages binding it to the message model -->
+<f:footer>
+	<OverflowToolbar>
+		<Button icon="sap-icon://alert" id="messageHandlerButton" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }"
+			type="Negative" press="onMessagesButtonPress"/>
+		<ToolbarSpacer/>
+	</OverflowToolbar>
+</f:footer>
 ```
 
 ---
@@ -286,14 +302,11 @@ onInit: function () {
         var totalAmount = parseFloat(this.byId("inputTotal").getValue() || 0);
         var customerCredit = parseFloat(this.getView().getModel().getProperty("/CustomerCreditLimit") || 0);
 
-        if (totalAmount > customerCredit) {
-            return {
-                isValid: false,
+       return {
+                isValid: totalAmount < customerCredit,
                 message: "Order amount exceeds customer credit limit of " + customerCredit
             };
-        }
 
-        return { isValid: true };
     }.bind(this));
 
     // File upload validation - general business requirement
@@ -316,14 +329,10 @@ onInit: function () {
         var startDate = this.byId("datePickerStart").getDateValue();
         var endDate = this.byId("datePickerEnd").getDateValue();
 
-        if (startDate && endDate && startDate >= endDate) {
-            return {
-                isValid: false,
+       return {
+                isValid: endDate >= startDate,
                 message: "End date must be after start date"
             };
-        }
-
-        return { isValid: true };
     }.bind(this));
 
     // External system availability check - general business rule
@@ -333,7 +342,7 @@ onInit: function () {
 
         if (bRequiresExternalValidation && !bSystemAvailable) {
             return {
-                isValid: false,
+                isValid: bRequiresExternalValidation && !bSystemAvailable,
                 message: "External validation system is currently unavailable. Please try again later."
             };
         }
