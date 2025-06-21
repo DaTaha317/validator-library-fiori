@@ -1,0 +1,29 @@
+# Validator i18n Properties
+# Arabic (ar) - العربية
+
+# Required field validation
+validator.required={0} مطلوب
+
+# String constraints
+validator.minLength={0}: الحد الأدنى للطول هو {1} حرف
+validator.maxLength={0}: الحد الأقصى للطول هو {1} حرف
+validator.maxLengthSimple=الحد الأقصى للطول هو {0} حرف
+
+# Numeric constraints
+validator.minValue={0}: الحد الأدنى للقيمة هو {1}
+validator.maxValue={0}: الحد الأقصى للقيمة هو {1}
+validator.maxDigits={0}: الحد الأقصى لإجمالي الأرقام هو {1}
+validator.maxDecimalPlaces={0}: الحد الأقصى للمنازل العشرية هو {1}
+
+# Type validation messages
+validator.invalidValue=قيمة غير صحيحة
+validator.invalidDecimal=أدخل رقماً عشرياً صحيحاً (الحد الأقصى {0} أرقام، {1} منزلة عشرية)
+validator.invalidDecimalSimple=أدخل رقماً عشرياً صحيحاً
+validator.invalidInteger=أدخل رقماً صحيحاً
+validator.invalidTime=أدخل وقتاً صحيحاً
+validator.invalidDate=أدخل تاريخاً صحيحاً
+validator.invalidText=أدخل نصاً صحيحاً
+
+# General labels
+validator.fieldLabel=الحقل
+validator.validationError=حدث خطأ في التحقق

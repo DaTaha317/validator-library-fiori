@@ -1,0 +1,29 @@
+# Validator i18n Properties
+# English (en) - Default
+
+# Required field validation
+validator.required={0} is required
+
+# String constraints
+validator.minLength={0}: Minimum length is {1} characters
+validator.maxLength={0}: Maximum length is {1} characters
+validator.maxLengthSimple=Maximum length is {0} characters
+
+# Numeric constraints
+validator.minValue={0}: Minimum value is {1}
+validator.maxValue={0}: Maximum value is {1}
+validator.maxDigits={0}: Maximum total digits is {1}
+validator.maxDecimalPlaces={0}: Maximum decimal places is {1}
+
+# Type validation messages
+validator.invalidValue=Invalid value
+validator.invalidDecimal=Enter a valid decimal number (max {0} digits, {1} decimal places)
+validator.invalidDecimalSimple=Enter a valid decimal number
+validator.invalidInteger=Enter a valid integer
+validator.invalidTime=Enter a valid time
+validator.invalidDate=Enter a valid date
+validator.invalidText=Enter a valid text
+
+# General labels
+validator.fieldLabel=Field
+validator.validationError=Validation error occurred
