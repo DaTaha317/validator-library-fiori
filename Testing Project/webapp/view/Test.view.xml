@@ -1,0 +1,35 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f" xmlns:form="sap.ui.layout.form"
+	xmlns:custom="validation.library.controls" controllerName="validation.library.controller.Test" xmlns:html="http://www.w3.org/1999/xhtml"
+	height="100%">
+	<f:DynamicPage id="DynamicPageId" headerTitle="{i18n>pageTitle}" showFooter="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading width="100%">
+					<Title text="{i18n>appTitle}"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:content>
+			<VBox class="sapUiMediumMargin">
+				<!-- SECTION 1: BASIC STRING VALIDATION -->
+				<core:Fragment fragmentName="validation.library.fragments.basicStringValidation" type="XML"/>
+				<!--SECTION 2: NUMERIC VALIDATION-->
+				<core:Fragment fragmentName="validation.library.fragments.numericValidation" type="XML"/>
+				<!-- SECTION 3: DATE AND TIME VALIDATION -->
+				<core:Fragment fragmentName="validation.library.fragments.dateTimeValidation" type="XML"/>
+				<!-- SECTION 4: COMPLEX VALIDATION SCENARIOS -->
+				<core:Fragment fragmentName="validation.library.fragments.complexValidation" type="XML"/>
+			</VBox>
+		</f:content>
+		<!--Action Bar-->
+		<f:footer>
+			<OverflowToolbar>
+				<Button icon="sap-icon://alert" id="messageHandlerButton" text="{= ${message>/}.length }" visible="{= ${message>/}.length > 0 }"
+					type="Negative" press="onMessagesButtonPress" ariaHasPopup="Dialog"/>
+				<ToolbarSpacer/>
+				<Button id="validateAllBtn" text="Validate All Forms" type="Emphasized" press="onValidateAll" class="sapUiTinyMarginEnd"/>
+				<Button id="clearBtn" text="Clear All" press="onClearAll" class="sapUiTinyMarginEnd"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

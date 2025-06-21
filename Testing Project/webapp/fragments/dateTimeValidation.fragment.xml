@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Panel headerText="Section 3: Date, Time and patterns Validation ( Custom Rules )" expandable="true" expanded="true"
+		class="sapUiMediumMarginBottom">
+		<form:SimpleForm id="dateTimeForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+			singleContainerFullSize="false">
+			<form:content>
+				<core:Title text="Date Fields"/>
+				<Label text="Start Date" required="true"/>
+				<DatePicker id="startDate" value="{path: '/startDate', type: 'sap.ui.model.odata.type.Date'}" required="true" fieldGroupIds="dateValidation"
+					placeholder="Select start date"/>
+				<Label text="End Date" required="true"/>
+				<DatePicker id="endDate" value="{path: '/endDate', type: 'sap.ui.model.odata.type.Date'}" fieldGroupIds="dateValidation" required="true"
+					placeholder="Select end date"/>
+				<core:Title text="Time Fields"/>
+				<Label text="Start Time" required="true"/>
+				<TimePicker id="startTime" value="{path: '/startTime', type: 'sap.ui.model.odata.type.Time'}" required="true" fieldGroupIds="dateValidation"
+					placeholder="Select start time"/>
+				<Label text="End Time" required="true"/>
+				<TimePicker id="endTime" value="{path: '/endTime', type: 'sap.ui.model.odata.type.Time'}" fieldGroupIds="dateValidation" required="true"
+					placeholder="Select end time"/>
+				<core:Title text="Pattern Fields"/>
+				<Label text="Tax ID" required="true"/>
+				<Input id="taxId" value="{/taxId}" required="true" fieldGroupIds="dateValidation" placeholder="Format: 12-1234567"/>
+				<Label></Label>
+				<Button id="validateDatetimeBtn" text="Validate" type="Emphasized" press="onGenericValidate" class="sapUiTinyMarginEnd"/>
+			</form:content>
+		</form:SimpleForm>
+	</Panel>
+</core:FragmentDefinition>

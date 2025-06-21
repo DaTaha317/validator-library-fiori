@@ -1,0 +1,41 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Panel headerText="Section 4: Attachment validation ( Global Custom Rules )" expandable="true" expanded="true"
+		class="sapUiMediumMarginBottom">
+		<form:SimpleForm id="complexForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+			singleContainerFullSize="false">
+			<form:content>
+				<VBox>
+					<Button text="Add Attachment" type="Emphasized" icon="sap-icon://add" press="onAddAttachment" class="sapUiTinyMarginBottom"/>
+					<Button id="validateAttachmentBtn" text="Validate Attachment" type="Emphasized" press="onValidateAttachment" class="sapUiTinyMarginEnd"/>
+					<Table items="{/attachments}" class="sapUiMediumMarginTop">
+						<columns>
+							<Column>
+								<Text text="File Name"/>
+							</Column>
+							<Column>
+								<Text text="Extension"/>
+							</Column>
+							<Column>
+								<Text text="Size"/>
+							</Column>
+							<Column>
+								<Text text="Actions"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{fileName}"/>
+									<Text text="{extension}"/>
+									<Text text="{fileSize}"/>
+									<Button icon="sap-icon://delete" type="Transparent" tooltip="Delete Attachment" press="onDeleteAttachment"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</VBox>
+			</form:content>
+		</form:SimpleForm>
+	</Panel>
+</core:FragmentDefinition>

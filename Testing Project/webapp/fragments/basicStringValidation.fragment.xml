@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Panel headerText="Section 1: Basic String Validation ( Constraint Based )" expandable="true" expanded="true" class="sapUiMediumMarginBottom">
+		<form:SimpleForm id="basicStringForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+			singleContainerFullSize="false">
+			<form:content>
+				<core:Title text="Required Fields"/>
+				<Label text="First Name" required="true"/>
+				<Input id="firstName" value="{/firstName}" required="true" fieldGroupIds="basicValidation" maxLength="50"
+					placeholder="Enter your first name"/>
+				<Label text="Last Name" required="true"/>
+				<Input id="lastName" value="{/lastName}" required="true" fieldGroupIds="basicValidation" maxLength="50" placeholder="Enter your last name"/>
+				<Label text="Department *" required="true"/>
+				<ComboBox id="department" selectedKey="{/department}" required="true" fieldGroupIds="basicValidation" items="{/departments}">
+					<core:Item key="{key}" text="{text}"/>
+				</ComboBox>
+				<core:Title text="Length Constraints"/>
+				<Label text="Username (3-20 chars)" required="true"/>
+				<Input id="username" value="{path: '/username', type: 'sap.ui.model.type.String', constraints: {minLength: 3, maxLength: 20}}"
+					required="true" fieldGroupIds="basicValidation" placeholder="3-20 characters"/>
+				<Label text="Description (Max 100 chars)"/>
+				<TextArea id="description" value="{path: '/description', type: 'sap.ui.model.type.String', constraints: {maxLength: 100}}"
+					fieldGroupIds="basicValidation" rows="3" placeholder="Maximum 100 characters"/>
+				<Label text="Short Code (Exactly 5 chars)" required="true"/>
+				<Input id="shortCode" value="{path: '/shortCode', type: 'sap.ui.model.type.String', constraints: {minLength: 5, maxLength: 5}}"
+					required="true" fieldGroupIds="basicValidation" placeholder="Must be exactly 5 characters"/>
+				<Label></Label>
+				<Button id="validateBasicBtn" text="Validate" type="Emphasized" press="onGenericValidate" class="sapUiTinyMarginEnd"/>
+			</form:content>
+		</form:SimpleForm>
+	</Panel>
+</core:FragmentDefinition>

@@ -1,0 +1,35 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Panel headerText="Section 2: Numeric Validation ( Constraint Based ) ( Real Time Validation )" expandable="true" expanded="true"
+		class="sapUiMediumMarginBottom">
+		<form:SimpleForm id="numericForm" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+			singleContainerFullSize="false">
+			<form:content>
+				<core:Title text="Integer Fields"/>
+				<Label text="Age (18-120)" required="true"/>
+				<Input id="age" value="{path: '/age', type: 'sap.ui.model.type.Integer', constraints: {minimum: 18, maximum: 120}}" required="true"
+					fieldGroupIds="numericValidation" placeholder="Enter age between 18-120" liveChange="onRealTimeValidation"/>
+				<Label text="Employee ID (1000-9999)"/>
+				<Input id="employeeId" value="{path: '/employeeId', type: 'sap.ui.model.type.Integer', constraints: {minimum: 1000, maximum: 9999}}"
+					fieldGroupIds="numericValidation" placeholder="4-digit employee ID" liveChange="onRealTimeValidation"/>
+				<Label text="Quantity (Min 1)" required="true"/>
+				<Input id="quantity" value="{path: '/quantity', type: 'sap.ui.model.type.Integer', constraints: {minimum: 1}}" required="true"
+					fieldGroupIds="numericValidation" placeholder="Minimum 1" liveChange="onRealTimeValidation"/>
+				<core:Title text="Decimal Fields"/>
+				<Label text="Price (Max 2 decimals)" required="true"/>
+				<Input id="price" value="{path: '/price', type: 'sap.ui.model.type.Float', constraints: {precision: 10, scale: 2, minimum: 0}}"
+					required="true" fieldGroupIds="numericValidation" placeholder="0.00" liveChange="onRealTimeValidation"/>
+				<Label text="Percentage (0-100, 2 decimals)"/>
+				<Input id="percentage"
+					value="{path: '/percentage', type: 'sap.ui.model.type.Float', constraints: {precision: 5, scale: 2, minimum: 0, maximum: 100}}"
+					fieldGroupIds="numericValidation" placeholder="0.00 - 100.00" liveChange="onRealTimeValidation"/>
+				<Label text="Weight (kg, 3 decimals)"/>
+				<Input id="weight" value="{path: '/weight', type: 'sap.ui.model.type.Float', constraints: {precision: 8, scale: 3}}"
+					fieldGroupIds="numericValidation" placeholder="Weight in kg" liveChange="onRealTimeValidation"/>
+				<Label text="Salary (No decimals)" required="true"/>
+				<Input id="salary" value="{path: '/salary', type: 'sap.ui.model.type.Float', constraints: {precision: 10, scale: 0, minimum: 0}}"
+					required="true" fieldGroupIds="numericValidation" placeholder="Whole number only" liveChange="onRealTimeValidation"/>
+			</form:content>
+		</form:SimpleForm>
+	</Panel>
+</core:FragmentDefinition>
