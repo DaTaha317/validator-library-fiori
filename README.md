@@ -506,6 +506,50 @@ onSubmitRequest: function(requestData) {
     },
 ```
 
+### Removing Messages
+
+Clear all validation messages and reset control states:
+
+```javascript
+// Clear all validation messages and reset affected controls
+onClearValidation: function () {
+    this.oValidator.clearAllMessages();
+}
+
+// Example: Clear validation before re-validating
+onRevalidate: function () {
+    // Clear previous validation state
+    this.oValidator.clearAllMessages();
+    
+    // Perform fresh validation
+    var aControls = this._getControlsByFieldGroupId("myForm");
+    var isValid = this.oValidator.validateControls(aControls);
+    
+    if (isValid) {
+        MessageToast.show("All fields are valid");
+    }
+}
+
+// Example: Clear validation when canceling a form
+onCancelForm: function () {
+    // Reset form data
+    this.getView().getModel().resetChanges();
+    
+    // Clear all validation messages and control states
+    this.oValidator.clearAllMessages();
+    
+    // Navigate back or close dialog
+    this.onNavBack();
+}
+```
+
+**Key Features:**
+- Removes all messages from the MessageManager
+- Resets the visual state (ValueState) of all affected controls
+- Clears the internal error tracking array
+- Handles cases where controls may have been destroyed
+- Supports method chaining for fluent API usage
+
 ### Custom Message Handling
 
 Access the MessageManager directly for advanced scenarios:
@@ -590,6 +634,12 @@ Adds a server error message.
 
 - `errorMessage` (string): The error message text
 - `additionalText` (string): Additional context information
+- Returns: `Validator` - for method chaining
+
+**`clearAllMessages()`**
+
+Clears all validation messages and resets the state of all affected controls.
+
 - Returns: `Validator` - for method chaining
 
 ### Properties
