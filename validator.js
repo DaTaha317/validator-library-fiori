@@ -230,6 +230,48 @@ sap.ui.define(
       }
     };
 
+    /**
+     * Clear all validation messages and reset the state of all affected controls
+     * This method removes all messages from the message manager and resets the visual state
+     * of all controls that were previously marked with errors.
+     * @returns {object} - This validator instance for chaining
+     */
+    Validator.prototype.clearAllMessages = function () {
+      // First, reset the state of all controls that have errors
+      if (this.InputsErrorsIds && this.InputsErrorsIds.length > 0) {
+        this.InputsErrorsIds.forEach(
+          function (item) {
+            try {
+              // Get the control using the Element registry
+              var oControl = sap.ui.core.Element.registry.get(item.inputError);
+              
+              if (oControl && oControl.setValueState) {
+                // Reset the control's visual state
+                oControl.setValueState("None");
+                oControl.setValueStateText("");
+              }
+            } catch (e) {
+              // Control might not exist anymore (e.g., destroyed), log and continue
+              console.warn(
+                "Could not reset control state for: " + item.inputError,
+                e
+              );
+            }
+          }.bind(this)
+        );
+      }
+    
+      // Clear all messages from the message manager
+      this.oMessageManager.removeAllMessages();
+    
+      // Reset the InputsErrorsIds array
+      this.InputsErrorsIds = [];
+    
+      // Return this for method chaining
+      return this;
+    };
+
+
     // =============================================================================
     // HELPER FUNCTIONS - UTILITY METHODS
     // =============================================================================
@@ -1203,3 +1245,4 @@ sap.ui.define(
     return Validator;
   }
 );
+
